@@ -11,8 +11,13 @@ class FetchProjectById extends React.Component {
         };
     }
 
+    getRandomArbitrary = (min, max) => {
+        let randomFloat = Math.random() * (max - min) + min;
+        return Math.trunc(randomFloat);
+    }
      componentDidMount() {
-         fetch("https://api.nasa.gov/techport/api/projects/" + this.state.projects[0].id + "?api_key=CggcbLsc9vvABUw1FHiLHeVZtmuavPpFyOgDkJxb")
+        const id = this.getRandomArbitrary(1,12000);
+         fetch("https://api.nasa.gov/techport/api/projects/" + this.state.projects[id].id + "?api_key=CggcbLsc9vvABUw1FHiLHeVZtmuavPpFyOgDkJxb")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -30,7 +35,6 @@ class FetchProjectById extends React.Component {
                 }
             )
     }
-
     render() {
         const { error, isLoaded, projectDetails } = this.state;
         if (error) {

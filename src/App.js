@@ -16,6 +16,15 @@ function App() {
           <div>
               <FetchProjects />
           </div>
+          <div>
+              <FetchProjects />
+          </div>
+          <div>
+              <FetchProjects />
+          </div>
+          <div>
+              <FetchProjects />
+          </div>
       </div>
   )
 /*  return (
