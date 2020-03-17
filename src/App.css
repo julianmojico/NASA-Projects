@@ -38,11 +38,13 @@
 }
 
 .card {
+  position: relative;
+  display: block;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px;
-  font-family: "PT Sans";
   margin: 1em;
+  font-family: "PT Sans";
 }
 
 .card:hover {
@@ -53,22 +55,48 @@
   padding: 2px 16px;
 }
 
-img {
+.img {
   border-radius: 5px 5px 0 0;
   size: inherit;
-
-}
-
-.row {
-  display: flex;
 }
 
 .column {
   float: left;
-  flex: 50%;
-
+  width: 33%;
 }
 
+.row {
+  text-align: center;
+}
+.card-action {
+  /*border-top: groove dimgrey ;*/
+  position: relative;
+  bottom: 1em;
+  font-family: Arial;
+  font-weight: bold;
+  color: blue;
+  font-size: 20px;
+  text-align: center;
+}
+
+@keyframes updown {
+  0% {top: 0px}
+  25% {top: 30px}
+  50% {top: 15px}
+  100% {top: 0px}
+}
+
+.card:hover > .card-action{
+  position: relative;
+  animation: updown 2s infinite;
+}
+.card:active > .hidden {
+  display: block;
+}
+
+.hidden{
+  display: none;
+}
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;
