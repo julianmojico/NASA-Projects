@@ -1,5 +1,5 @@
 import React from "react";
-import {FetchProjectById} from "./FetchProjectById";
+import {CardDetails} from "./CardDetails";
 
 class FetchProjects extends React.Component {
     constructor(props) {
@@ -33,13 +33,30 @@ class FetchProjects extends React.Component {
     }
 
     render() {
-        const { error, isLoaded, items } = this.state;
+        const {error, isLoaded, items} = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div>Loading Projects List...</div>;
         } else {
-            return (  <FetchProjectById data = {this.state.projects} />
+            return (
+                <div className="row">
+                    <div className="column">
+                        <CardDetails data={this.state.projects}/>
+                        <CardDetails data={this.state.projects}/>
+                        <CardDetails data={this.state.projects}/>
+                    </div>
+                    <div className="column">
+                        <CardDetails data={this.state.projects}/>
+                        <CardDetails data={this.state.projects}/>
+                        <CardDetails data={this.state.projects}/>
+                    </div>
+                    <div className="column">
+                        <CardDetails data={this.state.projects}/>
+                        <CardDetails data={this.state.projects}/>
+                        <CardDetails data={this.state.projects}/>
+                    </div>
+                </div>
             );
         }
     }
