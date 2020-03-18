@@ -2,7 +2,7 @@ import React from "react";
 import {FetchProjects, fetchProjects} from "./FetchProjects";
 import Trianglify from "../node_modules/trianglify";
 
-class ProjectDetails extends React.Component {
+class CardDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,14 +46,21 @@ class ProjectDetails extends React.Component {
         } else if (!isLoaded) {
             return <div>Loading project...</div>;
         } else {
-
+            const parser = new DOMParser();
+            const arrow = parser.parseFromString('&#709', 'text/html').body.textContent;
+            const description = parser.parseFromString(projectDetails.description, 'text/html').body.textContent;
+            // const mainTitle = projectDetails.leadOrganization.type;
+            const mainTitle = projectDetails.responsibleProgram;
             return (
                 <div className="card" id={projectDetails.id}>
-                    <RandomBackground className="container"/>
-                    <h4><b>{projectDetails.title}</b></h4>
-                    <span className="card-action">'&#709'</span>
-                    <div className="hidden">
-                        {projectDetails.description}
+                    <RandomBackground mainClass="header" acronym={mainTitle}/>
+                        <h4><b>{projectDetails.title}</b></h4>
+                    <div className='container'>
+
+                    <span className="card-action">{arrow}</span>
+                        <blockquote className="hidden">
+                            {description}
+                        </blockquote>
                     </div>
                 </div>
             );
@@ -61,10 +68,11 @@ class ProjectDetails extends React.Component {
     }
 }
 
-function RandomBackground (prop){
+function RandomBackground(props) {
     const pattern = Trianglify().canvas();
-    let container = React.createElement('div',prop,<img src={pattern.toDataURL()}/>);
+    let container = React.createElement('div', {className: props.mainClass}, [<h3>{props.acronym}</h3>,
+        <img mainClass={'container'} src={pattern.toDataURL()}/>]);
     return container;
 }
 
-export {ProjectDetails};
+export {CardDetails};
